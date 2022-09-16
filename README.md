@@ -17,7 +17,7 @@
 * you turn off your server so that no error occurs
 * drag the plugin into the plugins folder of your server
 * you turn on the server and it would be ready
-* 
+
 ## Support
 * [Issue Tracker](https://github.com/jonagamerpro1234/CustomEnderChest/issues)
 * [Discord](https://discord.gg/c5GhQDQCK5)
