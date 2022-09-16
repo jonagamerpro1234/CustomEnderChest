@@ -1,4 +1,4 @@
-package net.craftersland.customenderchest;
+package jss.customenderchest.commands;
 
 import jss.customenderchest.EnderChest;
 import jss.customenderchest.utils.Utils;
@@ -30,52 +30,87 @@ public class CommandHandler implements TabExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String cmd, String @NotNull [] args) {
 
         if(!(sender instanceof Player)){
-
+            if(args.length <= 1){
+                if(args[0].equalsIgnoreCase("help")){
+                    Utils.sendColorMessage(sender, "&chelp command!");
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("reload")){
+                    Utils.sendColorMessage(sender, "&creload command!");
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("delete")){
+                    Utils.sendColorMessage(sender, "&cdelete command!");
+                    return true;
+                }
+                Utils.sendColorMessage(sender, "&cArgumento desconosido!");
+                return true;
+            }
+            Utils.sendColorMessage(sender, "&7Usa &d/CustomEnderChest &ehelp &7para mas informacion");
             return false;
         }
 
 
         Player p = (Player) sender;
 
-        if (args.length == 0) {
-            if (sender instanceof Player) {
-                p = (Player) sender;
-                sendHelp(p);
+        if(args.length >= 1){
+
+            //open subcommand
+            if(args[0].equalsIgnoreCase("open")){
+
+                if(p.isOp() || p.hasPermission("customenderchest.command.open")){
+                    Utils.sendColorMessage(p, "&7Se han recargado todo los archivos del plugin");
+                }else{
+                    Utils.sendColorMessage(p, "&cNo tiense permisos");
+                }
                 return true;
-            } else {
-                sendConsoleHelp(sender);
-                return false;
             }
+
+            //reload subcommand
+            if(args[0].equalsIgnoreCase("reload")){
+                if(p.isOp() || p.hasPermission("customenderchest.command.reload")){
+
+                }else{
+                    Utils.sendColorMessage(p, "&cNo tiense permisos");
+                }
+                return true;
+            }
+
+            //unknow argumments message
+            Utils.sendColorMessage(p, "&cArgumento desconosido!");
+            return true;
+        }
+
+        /*if (args.length == 0) {
+            p = (Player) sender;
+            sendHelp(p);
+            return true;
         } else if (args.length == 1) {
             if (args[0].equalsIgnoreCase("open")) {
-                if (sender instanceof Player) {
-                    p = (Player) sender;
-                    if (p.hasPermission("CustomEnderChest.commands") || p.hasPermission("CustomEnderChest.admin")) {
-                        int size = enderchest.getEnderChestUtils().getSize(p);
-                        if (size == 0) {
-                            enderchest.getConfigHandler().printMessage(p, "chatMessages.noPermission");
-                            enderchest.getSoundHandler().sendFailedSound(p);
-                            return false;
-                        }
-                        if (enderchest.getDataHandler().hasJoinDelay(p)) {
-                            p.sendMessage(enderchest.getConfigHandler().getStringWithColor("chatMessages.prefix") + enderchest.getConfigHandler().getStringWithColor("chatMessages.joinDelay"));
-                            enderchest.getSoundHandler().sendFailedSound(p);
-                            return false;
-                        }
-                        enderchest.getEnderChestUtils().openMenu(p);
-                        return true;
-                    } else {
-                        enderchest.getSoundHandler().sendFailedSound(p);
+                p = (Player) sender;
+                if (p.hasPermission("CustomEnderChest.commands") || p.hasPermission("CustomEnderChest.admin")) {
+                    int size = enderchest.getEnderChestUtils().getSize(p);
+                    if (size == 0) {
                         enderchest.getConfigHandler().printMessage(p, "chatMessages.noPermission");
+                        enderchest.getSoundHandler().sendFailedSound(p);
+                        return false;
                     }
+                    if (enderchest.getDataHandler().hasJoinDelay(p)) {
+                        p.sendMessage(enderchest.getConfigHandler().getStringWithColor("chatMessages.prefix") + enderchest.getConfigHandler().getStringWithColor("chatMessages.joinDelay"));
+                        enderchest.getSoundHandler().sendFailedSound(p);
+                        return false;
+                    }
+                    enderchest.getEnderChestUtils().openMenu(p);
+                    return true;
+                } else {
+                    enderchest.getSoundHandler().sendFailedSound(p);
+                    enderchest.getConfigHandler().printMessage(p, "chatMessages.noPermission");
+                }
 								/*if (p.hasPermission("CustomEnderChest.admin")) {
 									enderchest.getSoundHandler().sendFailedSound(p);
 									enderchest.getConfigHandler().printMessage(p, "chatMessages.openCmdUsage");
 									return false;
-								}*/
-                } else {
-                    sender.sendMessage(ChatColor.DARK_RED + ">> " + ChatColor.RED + "You can't run this command by console!");
-                }
+								}
                 return false;
             } else if (args[0].equalsIgnoreCase("importfromflatfile")) {
                 if (sender instanceof Player) {
@@ -265,8 +300,9 @@ public class CommandHandler implements TabExecutor {
                 }
                 return false;
             }
-        }
-        return false;
+        }*/
+        Utils.sendColorMessage(p, "&7Usa &d/CustomEnderChest &ehelp &7para mas informacion");
+        return true;
     }
 
     @Nullable

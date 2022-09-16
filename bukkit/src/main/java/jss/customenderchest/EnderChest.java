@@ -1,5 +1,6 @@
 package jss.customenderchest;
 
+import jss.customenderchest.commands.CommandHandler;
 import net.craftersland.customenderchest.*;
 import net.craftersland.customenderchest.commands.FileToMysqlCmd;
 import net.craftersland.customenderchest.storage.FlatFileStorage;
