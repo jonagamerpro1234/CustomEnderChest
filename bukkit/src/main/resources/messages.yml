@@ -1,67 +1,8 @@
-# default config.yml for CustomEnderChest
-# config version 1.13.1
-
-Disable-Prefix: false
-
-#Database settings
-database:
-  #Type of database, Options: FlatFile or MySQL
-  typeOfDatabase: FlatFile
-  #MySQL database type connection details.
-  mysql:
-    host: 127.0.0.1
-    port: 3306
-    databaseName: 'mydatabase'
-    tableName: 'cec_enderchests'
-    user: 'admin'
-    password: 'cheesecake'
-    ssl: false
-    #This task will scan the mysql database for inactive players and remove them.
-    #The scanning takes place after server starts with a 2min delay. Runs on a async thread so server performance will not be affected.
-    removeOldUsers:
-      #Enable or disable mysql database maintenance. | (true or false)
-      enabled: false
-      #Inactivity in days. Default 60 days.
-      inactive: 60
-
-
-#Extra plugin settings.            
-settings:
-  #Add NBT data support for modded items. Requires MySQL storage and ProtocolLib dependency installed.
-  #NOTE!!! - Changes to this setting needs a server restart!
-  modded-NBT-data-support: false
-  #Disable click the enderchest to open the custom enderchest. (Useful if you only want to open it with the command)
-  disable-enderchest-click: false
-  #Disable all sounds triggered by this plugin.
-  disable-sounds: false
-
-#Customize Ender Chest Title
-enderChestTitle:
-  #EnderChest folder name. Supports color and format codes.
-  #Minecraft Color and Format Codes: http://minecraft.gamepedia.com/Formatting_codes
-  #WARNING! Max size is 32 characters including color, format codes.
-  enderChestName: '&5&lEnderChest &7- %level'
-  #The place holder  %player  will be replaced by player's name.
-  #The  %level  place holder replace text below. So you can customize each enderchest title by enderchest size.
-
-  #For 9 slots enderchest.
-  level0: '&dLevel 0'
-  #For 18 slots enderchest.
-  level1: '&dLevel 1'
-  #For 27 slots enderchest.
-  level2: '&dLevel 2'
-  #For 36 slots enderchest.
-  level3: '&5Level 3'
-  #For 45 slots enderchest.
-  level4: '&5Level 4'
-  #For 54 slots enderchest.
-  level5: '&5Level 5'
-
-#Chat messages. Supports color and format codes. 
+#Chat messages. Supports color and format codes.
 chatMessages:
   #Chat messages prefix.
   #To disable the prefix set it to '' ; Example: prefix: ''
-  prefix: '&5&l[CustomEC] '
+  prefix: '&6[&5CustomEnderChest&6]'
 
   #Disable any chat message by setting it to '' | Example: noPermission: ''
   #Chat messages.
@@ -119,5 +60,3 @@ chatMessages:
     userFooter:
       - '&5-=-=-=-=-=-=-=-=-=-< &dHelp Page &5>-=-=-=-=-=-=-=-=-=-'
       - ' '
-        
-        
